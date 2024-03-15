@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:contentDescription="@string/grapheneos_icon"
-            android:src="@drawable/grapheneos_icon" />
+            android:contentDescription="@string/voltageos_icon"
+            android:src="@drawable/voltageos_icon" />
 
         <LinearLayout
             style="@style/SudGlifButtonBar.Stackable"
