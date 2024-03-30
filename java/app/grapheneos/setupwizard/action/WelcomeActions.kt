@@ -3,6 +3,7 @@ package app.grapheneos.setupwizard.action
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -18,7 +19,6 @@ import java.util.Locale
 object WelcomeActions {
     private const val TAG = "WelcomeActions"
     private const val ACTION_ACCESSIBILITY = "android.settings.ACCESSIBILITY_SETTINGS_FOR_SUW"
-    private const val ACTION_EMERGENCY = "com.android.phone.EmergencyDialer.DIAL"
     private var simLocaleApplied = false
 
     init {
@@ -66,7 +66,11 @@ object WelcomeActions {
     }
 
     fun emergencyCall(context: Activity) {
-        SetupWizard.startActivity(context, Intent(ACTION_EMERGENCY))
+        SetupWizard.startActivity(
+            context,
+            appContext.getSystemService(TelecomManager::class.java)!!
+                .createLaunchEmergencyDialerIntent(null)
+        )
     }
 
     private fun getSimLocale(): Locale? {
